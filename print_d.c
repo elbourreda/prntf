@@ -6,7 +6,7 @@
 /*   By: rel-bour <rel-bour@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/02/28 10:11:12 by rel-bour          #+#    #+#             */
-/*   Updated: 2020/02/28 18:29:13 by rel-bour         ###   ########.fr       */
+/*   Updated: 2020/02/28 20:40:18 by rel-bour         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,24 +17,14 @@ void puts_d(t_str *data)
 	int int_with = 0;
 	int int_prec = 0;
 
-	
-    // if (data->w_zero == 1/* && data->with0 > data->prec0 && data->prec != 0*/)
-    // {
-    //     data->prec = data->with;
-    //     data->with = 0;
-    // }
-	// // else if (data->w_zero == 1 && data->with0 > data->prec0 && !data->point_d)
-	// // {
-	// // 	data->prec = data->with;
-    // //     data->with = 0;
-		
-	// // }
-
-	if (data->w_zero/* && !data->point_d*/)
+	if (data->w_zero)
 	{
+		if (!data->point_d || (data->point_d && data->prec_moin && !data->moin))
+		{
 		data->prec = data->with;
 		data->with = 0;
-		
+		}
+
 	}
 
     if (data->moin == 1)
@@ -88,16 +78,19 @@ void puts_u(t_str *data)
 	int int_with = 0;
 	int int_prec = 0;
 
-	
-    if (data->w_zero == 1)
-    {
-        data->prec = data->with;
-        data->with = 0;
-    }
-    
+	if (data->w_zero)
+	{
+		if (!data->point_d || (data->point_d && data->prec_moin && !data->moin))
+		{
+		data->prec = data->with;
+		data->with = 0;
+		}
+
+	}
+
     if (data->moin == 1)
 			{
-
+ 
 			while (data->prec)
 				{
 					ft_putchar('0');
@@ -123,6 +116,7 @@ void puts_u(t_str *data)
 					data->with--;
 					int_with = 1;
 				}
+
 				while (data->prec)
 				{
 					ft_putchar('0');
