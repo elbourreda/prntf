@@ -6,7 +6,7 @@
 /*   By: rel-bour <rel-bour@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/01/26 00:14:45 by rel-bour          #+#    #+#             */
-/*   Updated: 2020/02/28 06:43:46 by rel-bour         ###   ########.fr       */
+/*   Updated: 2020/02/28 10:22:33 by rel-bour         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,7 +38,7 @@ int get_data(char *str2, int i, va_list st)
 	intialisation(data);
 
 	//int r = i;
-	int _moin = 0;
+	// int _moin = 0;
 
 	i = i - 1;
 
@@ -81,12 +81,13 @@ int get_data(char *str2, int i, va_list st)
 			else if (str2[i] == '*')
 			{
 			  data->prec = va_arg(st, int);
-				if (data->prec < 0)
-					{
-			 		    data->prec = (data->prec * (-1));
-						 _moin = 1;
-						// data->moin = 1;
-					}
+				// if (data->prec < 0)
+				// 	{
+			 	// 	    data->prec = 0;
+				// 		//  _moin = 1;
+				// 		data->prec_moin = 1;
+				// 		// data->moin = 1;
+				// 	}
 			  i++;
 			}
 		}
@@ -103,13 +104,50 @@ int get_data(char *str2, int i, va_list st)
 //////////////////////////////////////////////////////
 	else if (str2[i] == 's')
 	{
+		if (data->prec < 0)
+		{
+		    data->prec = (data->prec * -1);
+			//  _moin = 1;
+			data->prec_moin = 1;
+			// data->moin = 1;
+		}	
 		data->s = va_arg(st, char *);
-
 		print_s(data, str2, i);
+	}
+//////////////////////////////////////////////////////
+	else if (str2[i] == 'd' || str2[i] == 'i')
+	{
+		if (data->prec < 0)
+			{
+		    	data->prec = 0;
+				data->prec_moin = 1;
+			}
+		data->d = va_arg(st, int);
+		data->lenD = lenR(data->d);
+		if (data->d == 0)
+			data->lenD = 1;
+
+		if (data->with >= data->lenD)
+			data->with = data->with - data->lenD;
+		
+		if (data->prec > data->lenD)
+			data->prec = data->prec - data->lenD;
+
+
+
+		if (((str2[i - 1] == '.') && data->d == 0) || ((str2[i - 1] == '0') && (str2[i - 2] == '.') && data->d == 0)
+			|| ((str2[i - 1] == '*') && (str2[i - 2] == '.') && (data->prec == 0) && !data->prec_moin && data->d == 0) )
+			data->s_zero = 1;
+				
+		if (!data->s_zero)
+		{
+			puts_d(data);
+		}
+
+
 
 	}
 //////////////////////////////////////////////////////
-
 
 	free(data);
 	return i;
