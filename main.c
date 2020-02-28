@@ -6,7 +6,7 @@
 /*   By: rel-bour <rel-bour@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/01/27 16:27:22 by rel-bour          #+#    #+#             */
-/*   Updated: 2020/02/28 12:50:00 by rel-bour         ###   ########.fr       */
+/*   Updated: 2020/02/28 15:47:14 by rel-bour         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,7 @@
 // #include "libft/libft.h"
 #include <string.h>
 
-#define f "Bla bla %*.*d", 0, 3, 0
+#define f "%u", 65456
 
 int main()
 {

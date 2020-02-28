@@ -6,7 +6,7 @@
 /*   By: rel-bour <rel-bour@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/01/26 00:14:45 by rel-bour          #+#    #+#             */
-/*   Updated: 2020/02/28 12:48:59 by rel-bour         ###   ########.fr       */
+/*   Updated: 2020/02/28 15:53:29 by rel-bour         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -155,30 +155,30 @@ int get_data(char *str2, int i, va_list st)
 		
 		if (data->d == 0)
 			data->lenD = 1;
-
-		if (data->with < data->lenD)
-			data->with = 0;
-		
-		if (data->with >= data->lenD)
-			data->with = data->with - data->lenD;
-		
-		
-		
-		if (data->prec > data->with && data->prec < data->lenD)
-			data->prec = 0;
-		
+			
 		if (data->prec > data->with)
 			data->with = 0;
+		if (data->with < data->lenD)
+			data->with = 0;
+		else if (data->with >= data->lenD)
+			data->with = data->with - data->lenD;
+
+		if (data->with > data->prec && data->prec < data->lenD)
+			data->prec = 0;
+			
+		if (data->prec > data->with && data->prec < data->lenD)
+			data->prec = 0;
 			
 		if (data->prec >= data->lenD)
 			data->prec = data->prec - data->lenD;
-
+		
 		if (data->with >= data->prec)
 			data->with = data->with - data->prec;
 
+		
 		if (((str2[i - 1] == '.') && (data->prec == 0) && !data->prec_moin && data->d == 0 && data->with == 0) 
 			||((str2[i - 1] == '0') && (str2[i - 2] == '.') && (data->prec == 0) && !data->prec_moin && data->d == 0 && data->with == 0)
-				|| ((str2[i - 1] == '*') && (str2[i - 2] == '.') && (data->prec == 0) && !data->prec_moin && data->d == 0) )
+				|| ((str2[i - 1] == '*') && (str2[i - 2] == '.') && (data->prec == 0) && !data->prec_moin && data->d == 0 && data->with == 0 ) )
 			data->s_zero = 1;
 		
 
@@ -196,7 +196,60 @@ int get_data(char *str2, int i, va_list st)
 
 	}
 //////////////////////////////////////////////////////
+	// else if (str2[i] == 'u')
+	// {
+	// 	data->u = va_arg(st, unsigned long);
 
+	// 	if (data->prec < 0)
+	// 		{
+	// 	    	data->prec = 0;
+	// 			data->prec_moin = 1;
+	// 		}
+
+	// 	data->lenD = lenR(data->u);
+	// 	if (data->u == 0)
+	// 		data->lenD = 1;
+			
+	// 	if (data->prec > data->with)
+	// 		data->with = 0;
+	// 	if (data->with < data->lenD)
+	// 		data->with = 0;
+	// 	else if (data->with >= data->lenD)
+	// 		data->with = data->with - data->lenD;
+
+	// 	if (data->with > data->prec && data->prec < data->lenD)
+	// 		data->prec = 0;
+			
+	// 	if (data->prec > data->with && data->prec < data->lenD)
+	// 		data->prec = 0;
+			
+	// 	if (data->prec >= data->lenD)
+	// 		data->prec = data->prec - data->lenD;
+		
+	// 	if (data->with >= data->prec)
+	// 		data->with = data->with - data->prec;
+
+		
+	// 	if (((str2[i - 1] == '.') && (data->prec == 0) && !data->prec_moin && data->u == 0 && data->with == 0) 
+	// 		||((str2[i - 1] == '0') && (str2[i - 2] == '.') && (data->prec == 0) && !data->prec_moin && data->u == 0 && data->with == 0)
+	// 			|| ((str2[i - 1] == '*') && (str2[i - 2] == '.') && (data->prec == 0) && !data->prec_moin && data->u == 0 && data->with == 0 ) )
+	// 		data->s_zero = 1;
+		
+
+
+	// 	if ((str2[i - 1] == '.') || ((str2[i - 1] == '*') && (str2[i - 2] == '.')) ||
+	// 	 ((str2[i - 1] == '0') && (str2[i - 2] == '.')))
+	// 			data->point_d = 1;
+				
+	// 	if (!data->s_zero)
+	// 	{
+	// 		puts_u(data);
+	// 	}
+		
+	// }
+
+
+//////////////////////////////////////////////////////
 	free(data);
 	return i;
 }

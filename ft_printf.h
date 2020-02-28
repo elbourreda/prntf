@@ -6,7 +6,7 @@
 /*   By: rel-bour <rel-bour@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/01/09 10:32:09 by rel-bour          #+#    #+#             */
-/*   Updated: 2020/02/28 12:22:03 by rel-bour         ###   ########.fr       */
+/*   Updated: 2020/02/28 15:35:12 by rel-bour         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,6 +36,7 @@ char *conv_hex(unsigned int nb);
 char *conv_hexg(unsigned int nb);
 char *conv_hexp(unsigned long nb);
 void puts_d();
+void puts_u();
 
 // void printSS();
 void printSS();
