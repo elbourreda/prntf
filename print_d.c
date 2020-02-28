@@ -6,7 +6,7 @@
 /*   By: rel-bour <rel-bour@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/02/28 10:11:12 by rel-bour          #+#    #+#             */
-/*   Updated: 2020/02/28 15:36:11 by rel-bour         ###   ########.fr       */
+/*   Updated: 2020/02/28 16:27:49 by rel-bour         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -69,6 +69,7 @@ void puts_d(t_str *data)
     
 }
 
+
 void puts_u(t_str *data)
 {
 	int int_with = 0;
@@ -83,13 +84,14 @@ void puts_u(t_str *data)
     
     if (data->moin == 1)
 			{
+
 			while (data->prec)
 				{
 					ft_putchar('0');
 					data->prec--;
 					int_prec = 1;
 				}
-			if (data->d == 0 && data->point_d == 1 && data->prec_moin == 0 && int_prec == 0)
+			if (data->u == 0 && data->point_d == 1 && data->prec_moin == 0 && int_prec == 0)
                 ft_putchar(' ');
             else
 				ft_putnbr(data->u);
@@ -114,7 +116,7 @@ void puts_u(t_str *data)
 					data->prec--;
 					int_prec = 1;
 				}
-                if (data->d == 0 && data->point_d == 1 && data->prec_moin == 0 && int_prec == 0)
+                if (data->u == 0 && data->point_d == 1 && data->prec_moin == 0 && int_prec == 0)
                 ft_putchar(' ');
                 else
 				ft_putnbr(data->u);
