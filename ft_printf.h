@@ -6,7 +6,7 @@
 /*   By: rel-bour <rel-bour@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/01/09 10:32:09 by rel-bour          #+#    #+#             */
-/*   Updated: 2020/02/28 15:35:12 by rel-bour         ###   ########.fr       */
+/*   Updated: 2020/02/28 17:49:42 by rel-bour         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -57,7 +57,9 @@ typedef struct
 {
            
            int with;
+           int with0;
            int prec;
+           int prec0;
            int lenS;
            int moin;
            int s_zero;

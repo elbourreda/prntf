@@ -6,7 +6,7 @@
 /*   By: rel-bour <rel-bour@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/01/26 00:14:45 by rel-bour          #+#    #+#             */
-/*   Updated: 2020/02/28 16:31:54 by rel-bour         ###   ########.fr       */
+/*   Updated: 2020/02/28 18:23:44 by rel-bour         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -107,7 +107,8 @@ int get_data(char *str2, int i, va_list st)
 		}
 		// r++;
 	}
-
+		data->prec0 = data->prec;
+		data->with0 = data->with;
 
 //////////////////////////////////////////////////////
 	if (str2[i] == 'c')
@@ -138,6 +139,9 @@ int get_data(char *str2, int i, va_list st)
 			}
 		data->d = va_arg(st, int);
 		
+
+		
+
 		if (data->d < 0 && data-> d != (-2147483648))
 		{
 			data->d = data->d * -1;
@@ -152,6 +156,11 @@ int get_data(char *str2, int i, va_list st)
 				data->d_salib = 1;
 		}
 		data->lenD = lenR(data->d);
+		int g = 0;
+		if (data->d == 0 && data->prec == 0 && data->with > 0)
+			g = 1;
+		else if (data->d == 0 && data->prec == 1 && data->with == 0)
+			g = 2;
 		
 		if (data->d == 0)
 			data->lenD = 1;
@@ -192,14 +201,30 @@ int get_data(char *str2, int i, va_list st)
 
 
 		if ((str2[i - 1] == '.') || ((str2[i - 1] == '*') && (str2[i - 2] == '.')) ||
-		 ((str2[i - 1] == '0') && (str2[i - 2] == '.')))
+		 ((str2[i - 1] == '0') && (str2[i - 2] == '.')) ||
+		  ((ft_isdigit(str2[i - 1]) == 1) && (str2[i - 2] == '.')))
 				data->point_d = 1;
 				
 		if (!data->s_zero)
 		{
 			puts_d(data);
 		}
-
+		else if (data->d == 0 && data->prec == 0 && data->with > 0)
+		{
+			while (data->with > 0)
+			{
+				ft_putchar(' ');
+				data->with--;
+			}
+		}
+		else if (g==1)
+		{
+			ft_putchar(' ');
+		}
+		else if (g == 2)
+		{
+			ft_putchar('0');
+		}
 
 
 	}

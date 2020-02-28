@@ -6,7 +6,7 @@
 /*   By: rel-bour <rel-bour@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/02/28 10:11:12 by rel-bour          #+#    #+#             */
-/*   Updated: 2020/02/28 16:27:49 by rel-bour         ###   ########.fr       */
+/*   Updated: 2020/02/28 18:29:13 by rel-bour         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,12 +18,25 @@ void puts_d(t_str *data)
 	int int_prec = 0;
 
 	
-    if (data->w_zero == 1)
-    {
-        data->prec = data->with;
-        data->with = 0;
-    }
-    
+    // if (data->w_zero == 1/* && data->with0 > data->prec0 && data->prec != 0*/)
+    // {
+    //     data->prec = data->with;
+    //     data->with = 0;
+    // }
+	// // else if (data->w_zero == 1 && data->with0 > data->prec0 && !data->point_d)
+	// // {
+	// // 	data->prec = data->with;
+    // //     data->with = 0;
+		
+	// // }
+
+	if (data->w_zero/* && !data->point_d*/)
+	{
+		data->prec = data->with;
+		data->with = 0;
+		
+	}
+
     if (data->moin == 1)
 			{
             if (data->d_salib == 1)
