@@ -6,7 +6,7 @@
 /*   By: rel-bour <rel-bour@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/01/09 10:32:09 by rel-bour          #+#    #+#             */
-/*   Updated: 2020/02/28 10:14:24 by rel-bour         ###   ########.fr       */
+/*   Updated: 2020/02/28 12:22:03 by rel-bour         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -63,6 +63,10 @@ typedef struct
            int pre_zero;
            int prec_moin;
            int d;
+           int d_salib;
+           int point_d;
+           int w_zero;
+           int max;
            int lenD;
            unsigned int u;
            unsigned long int p;
