@@ -6,7 +6,7 @@
 /*   By: rel-bour <rel-bour@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/01/09 10:32:09 by rel-bour          #+#    #+#             */
-/*   Updated: 2020/02/28 17:49:42 by rel-bour         ###   ########.fr       */
+/*   Updated: 2020/02/29 17:36:33 by rel-bour         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,10 +37,14 @@ char *conv_hexg(unsigned int nb);
 char *conv_hexp(unsigned long nb);
 void puts_d();
 void puts_u();
-
+void puts_x();
+void puts_xg();
+void puts_p();
 // void printSS();
 void printSS();
 void print_s();
+int print_pors(int h);
+void puts_pors();
 
 
 /////libft

@@ -6,7 +6,7 @@
 /*   By: rel-bour <rel-bour@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/02/19 12:25:28 by rel-bour          #+#    #+#             */
-/*   Updated: 2020/02/26 11:26:52 by rel-bour         ###   ########.fr       */
+/*   Updated: 2020/02/29 09:55:23 by rel-bour         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,13 +34,14 @@ char *conv_hex(unsigned int nb)
         nb = nb / 16;
         i++;
     }
-    rs = (char*)malloc(i * sizeof(char));
+    rs = (char*)malloc(i * sizeof(char) + 1);
     while (i > 0)
     {
         rs[h] = rslt[i - 1]; 
      i--;
      h++;
     }
+    rs[h] = '\0';
     // reda = rs;
     // free(rs);
     return rs;    
@@ -67,20 +68,21 @@ char *conv_hexg(unsigned int nb)
         nb = nb / 16;
         i++;
     }
-    rs = (char*)malloc(i * sizeof(char));
+    rs = (char*)malloc(i * sizeof(char) + 1);
     while (i > 0)
     {
         rs[h] = rslt[i - 1]; 
      i--;
      h++;
     }
+    rs[h] = '\0';
     // reda = rs;
     // free(rs);
     return rs;    
 }
 
 
-char *conv_hexp(unsigned long nb)
+char *conv_hexp(unsigned long int nb)
 {
     int i;
     int r;
@@ -90,6 +92,8 @@ char *conv_hexp(unsigned long nb)
     // char *reda;
     
     i = 0;
+    if (nb != 0)
+    {
     while (nb > 0)
     {
         r = nb % 16;
@@ -101,7 +105,17 @@ char *conv_hexp(unsigned long nb)
         nb = nb / 16;
         i++;
     }
-    rs = (char*)malloc(i * sizeof(char) + 1);
+    }
+    else
+    {
+        i = 1;
+        rslt[0] = '0';
+    }
+    
+    rs = (char*)malloc(i * sizeof(char) + 3);
+    rs[0] = '0';
+    rs[1] = 'x';
+    h = 2;
     while (i > 0)
     {
         rs[h] = rslt[i - 1]; 

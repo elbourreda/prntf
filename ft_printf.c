@@ -6,11 +6,52 @@
 /*   By: rel-bour <rel-bour@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/01/26 00:14:45 by rel-bour          #+#    #+#             */
-/*   Updated: 2020/02/28 20:40:44 by rel-bour         ###   ########.fr       */
+/*   Updated: 2020/02/29 17:53:43 by rel-bour         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_printf.h"
+
+int print_pors(int h)
+{
+	int h1 = h;
+	if (h % 2 == 0)
+		{
+            h = h / 2;
+		}
+		else 
+        {
+            h = h - 1;
+            h = h / 2;
+        }
+		h1 = h;
+        while (h > 0)
+        {
+            ft_putchar('%');
+            h--;
+        }
+		return h1;
+}
+
+int print_pors2(int h)
+{
+	int h1 = h;
+	if (h % 2 == 0)
+		{
+            h = h / 2;
+		}
+		else 
+        {
+            h = h - 1;
+            h = h / 2;
+        }
+		h1 = h;
+        while (h > 0)
+        {
+            h--;
+        }
+		return h1;
+}
 
 // struct dt data;
 void intialisation(t_str *data)
@@ -40,73 +81,75 @@ int get_data(char *str2, int i, va_list st)
 	t_str *data;
 	data = malloc(sizeof(t_str));
 	intialisation(data);
-	//int r = i;
+	
 	// int _moin = 0;
-
-	i = i - 1;
-
+	int r = i;
+	// i = i - 1;
+	
 
 
 	//&& str2[r] != '%' %
-	while (ft_isspec(str2[i]) == 0)
+	while (ft_isspec(str2[i])/* == 0 && str2[r] != '%'*/)
 	{
-		i++;
-		if (str2[i] == '-')
-		{
-			data->moin = 1;
 			i++;
-		}
-		if (ft_isdigit(str2[i]) == 1)
-		{
-			if (str2[i] == '0' && ft_isdigit(str2[i + 1]) == 1)
+			if (str2[i] == '-')
 			{
-				data->w_zero = 1;
+				data->moin = 1;
 				i++;
 			}
-			if (str2[i] == '0' && str2[i + 1] == '*')
-			{
-				data->w_zero = 1;
-				data->with = va_arg(st, int);
-				
-			}
-			else
-				data->with = atoi(&str2[i]);
-			while (ft_isdigit(str2[i]) == 1)
-				i++;
-		}
-		else if (str2[i] == '*')
-		{
-			data->with = va_arg(st, int);
-			if (data->with < 0)
-			{
-			  data->with = (data->with * (-1));
-			  data->moin = 1;
-			}
-			i++;
-		}   
-	   if (str2[i] == '.')
-		{
-			i++;
 			if (ft_isdigit(str2[i]) == 1)
 			{
-				data->prec = atoi(&str2[i]);
+				if (str2[i] == '0' && ft_isdigit(str2[i + 1]) == 1)
+				{
+					data->w_zero = 1;
+					i++;
+				}
+				if (str2[i] == '0' && str2[i + 1] == '*')
+				{
+					data->w_zero = 1;
+					data->with = va_arg(st, int);
+					
+				}
+				else
+					data->with = atoi(&str2[i]);
 				while (ft_isdigit(str2[i]) == 1)
-				i++;
-			}             
+					i++;
+			}
 			else if (str2[i] == '*')
 			{
-			  data->prec = va_arg(st, int);
-				// if (data->prec < 0)
-				// 	{
-			 	// 	    data->prec = 0;
-				// 		//  _moin = 1;
-				// 		data->prec_moin = 1;
-				// 		// data->moin = 1;
-				// 	}
-			  i++;
+				data->with = va_arg(st, int);
+				if (data->with < 0)
+				{
+				data->with = (data->with * (-1));
+				data->moin = 1;
+				}
+				i++;
+			}   
+		if (str2[i] == '.')
+			{
+				i++;
+				if (ft_isdigit(str2[i]) == 1)
+				{
+					data->prec = atoi(&str2[i]);
+					while (ft_isdigit(str2[i]) == 1)
+					i++;
+				}             
+				else if (str2[i] == '*')
+				{
+				data->prec = va_arg(st, int);
+					// if (data->prec < 0)
+					// 	{
+					// 	    data->prec = 0;
+					// 		//  _moin = 1;
+					// 		data->prec_moin = 1;
+					// 		// data->moin = 1;
+					// 	}
+				i++;
+				}
 			}
-		}
-		// r++;
+			// r = r + i - 1;
+			// r++;
+		
 	}
 		data->prec0 = data->prec;
 		data->with0 = data->with;
@@ -117,6 +160,106 @@ int get_data(char *str2, int i, va_list st)
         data->c = va_arg(st, int);
                print_c(data->moin, data->c, data->with);
     }	
+//////////////////////////////////////////////////////
+	else if (str2[i] == '%')
+	{
+		int h = 1;
+		// printf("reda");
+		while (str2[i] == '%')
+		{
+			i++;
+			h++;
+		}
+		print_pors(h);
+		// i = r - 1;
+	}
+
+//////////////////////////////////////////////////////
+/*
+else if (str2[r] == '%')
+	{
+		int h = 1;
+		while (str2[r] == '%')
+		{
+			r++;
+			h++;
+		}
+		
+		if (data->prec < 0)
+			{
+		    	data->prec = 0;
+				data->prec_moin = 1;
+			}
+		if (data->with < 0)
+			{
+			  data->with = (data->with * (-1));
+			  data->moin = 1;
+			}	
+		data->lenD = print_pors2(h);
+		int g = 0;
+		if (data->u == 0 && data->prec == 0 && data->with > 0)
+			g = 1;
+		else if (data->u == 0 && data->prec == 1 && data->with == 0)
+			g = 2;
+		
+		if (data->u == 0)
+			data->lenD = 1;
+		if (data->prec > data->with)
+			data->with = 0;
+		if (data->with < data->lenD)
+			data->with = 0;
+		else if (data->with >= data->lenD)
+			data->with = data->with - data->lenD;
+
+		if (data->with > data->prec && data->prec < data->lenD)
+			data->prec = 0;
+			
+		if (data->prec > data->with && data->prec < data->lenD)
+			data->prec = 0;
+
+		if (data->prec >= data->lenD)
+			data->prec = data->prec - data->lenD;
+		
+		if (data->with >= data->prec)
+			data->with = data->with - data->prec;
+
+		
+		if (((str2[i - 1] == '.') && (data->prec == 0) && !data->prec_moin && data->u == 0 && data->with == 0) 
+			||((str2[i - 1] == '0') && (str2[i - 2] == '.') && (data->prec == 0) && !data->prec_moin && data->u == 0 && data->with == 0)
+				|| ((str2[i - 1] == '*') && (str2[i - 2] == '.') && (data->prec == 0) && !data->prec_moin && data->u == 0 && data->with == 0 ) )
+			data->s_zero = 1;
+		
+			
+		if ((str2[i - 1] == '.') || ((str2[i - 1] == '*') && (str2[i - 2] == '.')) ||
+		 ((str2[i - 1] == '0') && (str2[i - 2] == '.')) ||
+		  ((ft_isdigit(str2[i - 1]) == 1) && (str2[i - 2] == '.')))
+				data->point_d = 1;
+				
+		if (!data->s_zero)
+		{
+			puts_pors(data, h);
+		}
+		else if (data->u == 0 && data->prec == 0 && data->with > 0)
+		{
+			while (data->with > 0)
+			{
+				ft_putchar(' ');
+				data->with--;
+			}
+		}
+		else if (g==1)
+		{
+			ft_putchar(' ');
+		}
+		else if (g == 2)
+		{
+			ft_putchar('0');
+		}
+		i = r - 1;
+	}
+
+*/
+
 //////////////////////////////////////////////////////
 	else if (str2[i] == 's')
 	{
@@ -253,7 +396,7 @@ int get_data(char *str2, int i, va_list st)
 			  data->with = (data->with * (-1));
 			  data->moin = 1;
 			}
-		data->u = va_arg(st, unsigned long);
+		data->u = va_arg(st, unsigned long int);
 	
 		data->lenD = lenR(data->u);
 		int g = 0;
@@ -318,6 +461,397 @@ int get_data(char *str2, int i, va_list st)
 	}
 
 //////////////////////////////////////////////////////
+
+else if (str2[i] == 'x')
+{
+		data->u = va_arg(st, unsigned long);
+
+		char *hex;
+		// if (data->u <= 9)
+		// 	ft_putnbr(data->u);
+		// else
+		// {
+			hex = conv_hex(data->u);
+			// ft_putstr(hex);
+		// }
+
+		////////////////////////
+
+
+		if (data->prec < 0)
+			{
+		    	data->prec = 0;
+				data->prec_moin = 1;
+			}
+		if (data->with < 0)
+			{
+			  data->with = (data->with * (-1));
+			  data->moin = 1;
+			}	
+		data->lenD = ft_strlen(hex);
+		int g = 0;
+		if (data->u == 0 && data->prec == 0 && data->with > 0)
+			g = 1;
+		else if (data->u == 0 && data->prec == 1 && data->with == 0)
+			g = 2;
+		
+		if (data->u == 0)
+			data->lenD = 1;
+		if (data->prec > data->with)
+			data->with = 0;
+		if (data->with < data->lenD)
+			data->with = 0;
+		else if (data->with >= data->lenD)
+			data->with = data->with - data->lenD;
+
+		if (data->with >= data->prec && data->prec < data->lenD)
+			data->prec = 0;
+			
+		if (data->prec > data->with && data->prec < data->lenD)
+			data->prec = 0;
+
+		if (data->prec >= data->lenD)
+			data->prec = data->prec - data->lenD;
+		
+		if (data->with >= data->prec)
+			data->with = data->with - data->prec;
+
+		
+		if (((str2[i - 1] == '.') && (data->prec == 0) && !data->prec_moin && data->u == 0 && data->with == 0) 
+			||((str2[i - 1] == '0') && (str2[i - 2] == '.') && (data->prec == 0) && !data->prec_moin && data->u == 0 && data->with == 0)
+				|| ((str2[i - 1] == '*') && (str2[i - 2] == '.') && (data->prec == 0) && !data->prec_moin && data->u == 0 && data->with == 0 ) )
+			data->s_zero = 1;
+		
+			
+		if ((str2[i - 1] == '.') || ((str2[i - 1] == '*') && (str2[i - 2] == '.')) ||
+		 ((str2[i - 1] == '0') && (str2[i - 2] == '.')) ||
+		  ((ft_isdigit(str2[i - 1]) == 1) && (str2[i - 2] == '.')))
+				data->point_d = 1;
+				
+		if (!data->s_zero)
+		{
+			puts_x(data);
+		}
+		else if (data->u == 0 && data->prec == 0 && data->with > 0)
+		{
+			while (data->with > 0)
+			{
+				ft_putchar(' ');
+				data->with--;
+			}
+		}
+		else if (g==1)
+		{
+			ft_putchar(' ');
+		}
+		else if (g == 2)
+		{
+			ft_putchar('0');
+		}
+}
+//////////////////////////////////////////////////////
+
+else if (str2[i] == 'X')
+{
+		data->u = va_arg(st, unsigned long);
+
+		char *hex;
+		// if (data->u <= 9)
+		// 	ft_putnbr(data->u);
+		// else
+		// {
+			hex = conv_hexg(data->u);
+			// ft_putstr(hex);
+		// }
+
+		////////////////////////
+
+
+		if (data->prec < 0)
+			{
+		    	data->prec = 0;
+				data->prec_moin = 1;
+			}
+		if (data->with < 0)
+			{
+			  data->with = (data->with * (-1));
+			  data->moin = 1;
+			}	
+		data->lenD = ft_strlen(hex);
+		int g = 0;
+		if (data->u == 0 && data->prec == 0 && data->with > 0)
+			g = 1;
+		else if (data->u == 0 && data->prec == 1 && data->with == 0)
+			g = 2;
+		
+		if (data->u == 0)
+			data->lenD = 1;
+		if (data->prec > data->with)
+			data->with = 0;
+		if (data->with < data->lenD)
+			data->with = 0;
+		else if (data->with >= data->lenD)
+			data->with = data->with - data->lenD;
+
+		if (data->with >= data->prec && data->prec < data->lenD)
+			data->prec = 0;
+			
+		if (data->prec > data->with && data->prec < data->lenD)
+			data->prec = 0;
+
+		if (data->prec >= data->lenD)
+			data->prec = data->prec - data->lenD;
+		
+		if (data->with >= data->prec)
+			data->with = data->with - data->prec;
+
+		
+		if (((str2[i - 1] == '.') && (data->prec == 0) && !data->prec_moin && data->u == 0 && data->with == 0) 
+			||((str2[i - 1] == '0') && (str2[i - 2] == '.') && (data->prec == 0) && !data->prec_moin && data->u == 0 && data->with == 0)
+				|| ((str2[i - 1] == '*') && (str2[i - 2] == '.') && (data->prec == 0) && !data->prec_moin && data->u == 0 && data->with == 0 ) )
+			data->s_zero = 1;
+		
+			
+		if ((str2[i - 1] == '.') || ((str2[i - 1] == '*') && (str2[i - 2] == '.')) ||
+		 ((str2[i - 1] == '0') && (str2[i - 2] == '.')) ||
+		  ((ft_isdigit(str2[i - 1]) == 1) && (str2[i - 2] == '.')))
+				data->point_d = 1;
+				
+		if (!data->s_zero)
+		{
+			puts_xg(data);
+		}
+		else if (data->u == 0 && data->prec == 0 && data->with > 0)
+		{
+			while (data->with > 0)
+			{
+				ft_putchar(' ');
+				data->with--;
+			}
+		}
+		else if (g==1)
+		{
+			ft_putchar(' ');
+		}
+		else if (g == 2)
+		{
+			ft_putchar('0');
+		}
+}
+
+//////////////////////////////////////////////////////
+
+
+// else if (str2[i] == 'p')
+// {
+// 		data->p = va_arg(st, unsigned long);
+
+// 		char *hex;
+// 		// if (data->p <= 9)
+// 		// 	ft_putnbr(data->p);
+// 		// else
+// 		// {
+// 			hex = conv_hexp(data->p);
+// 			// ft_putstr(hex);
+// 		// }
+
+// 		////////////////////////
+
+
+// 		if (data->prec < 0)
+// 			{
+// 		    	data->prec = 0;
+// 				data->prec_moin = 1;
+// 			}
+// 		if (data->with < 0)
+// 			{
+// 			  data->with = (data->with * (-1));
+// 			  data->moin = 1;
+// 			}	
+// 		data->lenD = ft_strlen(hex);
+// 		int g = 0;
+// 		if (data->p == 0 && data->prec == 0 && data->with > 0)
+// 			g = 1;
+// 		else if (data->p == 0 && data->prec == 1 && data->with == 0)
+// 			g = 2;
+		
+// 		// if (data->p == 0)
+// 		// 	data->lenD = 1;
+// 		if (data->prec > data->with)
+// 			data->with = 0;
+// 		if (data->with < data->lenD)
+// 			data->with = 0;
+// 		else if (data->with >= data->lenD)
+// 			data->with = data->with - data->lenD;
+
+// 		if (data->with >= data->prec && data->prec < data->lenD)
+// 			data->prec = 0;
+			
+// 		if (data->prec > data->with && data->prec < data->lenD)
+// 			data->prec = 0;
+
+// 		if (data->prec >= data->lenD)
+// 			data->prec = data->prec - data->lenD;
+		
+// 		if (data->with >= data->prec)
+// 			data->with = data->with - data->prec;
+
+		
+// 		if (((str2[i - 1] == '.') && (data->prec == 0) && !data->prec_moin && data->p == 0 && data->with == 0) 
+// 			||((str2[i - 1] == '0') && (str2[i - 2] == '.') && (data->prec == 0) && !data->prec_moin && data->p == 0 && data->with == 0)
+// 				|| ((str2[i - 1] == '*') && (str2[i - 2] == '.') && (data->prec == 0) && !data->prec_moin && data->p == 0 && data->with == 0 ) )
+// 			data->s_zero = 1;
+		
+			
+	// if ((str2[i - 1] == '.') || ((str2[i - 1] == '*') && (str2[i - 2] == '.')) ||
+	// 	 ((str2[i - 1] == '0') && (str2[i - 2] == '.')) ||
+	// 	  (data->prec > 0 && (str2[i - data->lenD] == '.')))
+	// 			data->point_d = 1;
+
+// 		// if (g==1)
+// 		// {
+// 		// 	data->with0 = data->with0 - 2;
+// 		// 	while (data->with0)
+// 		// 	{
+// 		// 		ft_putchar(' ');
+// 		// 		data->with0--;
+// 		// 	}
+// 		// 	ft_putstr("0x");
+// 		// }	
+// 		if (!data->s_zero)
+// 		{
+// 			puts_p(data);
+// 		}
+// 		else if (data->p == 0 && data->prec == 0 && data->with > 0)
+// 		{
+// 			while (data->with > 0)
+// 			{
+// 				ft_putchar(' ');
+// 				data->with--;
+// 			}
+// 		}
+// 		else if (g==1)
+// 		{
+// 			data->with0 = data->with0 - 2;
+// 			while (data->with0)
+// 			{
+// 				ft_putchar(' ');
+// 				data->with0--;
+// 			}
+// 			ft_putstr("0x");
+// 		}
+// 		else if (g == 2)
+// 		{
+// 			ft_putchar('0');
+// 		}
+// 		else /* if (data->p == 0 && data->with == 0 && data->prec == 0)*/
+// 		{
+// 			ft_putstr("0x");
+// 		}
+// }
+
+// //////////////////////////////////////////////////////
+
+
+
+else if (str2[i] == 'p')
+{
+		data->p = va_arg(st, unsigned long);
+
+		char *hex;
+		hex = conv_hexp(data->p);
+		data->lenS = ft_strlen(hex);
+		data->lenD = lenR(data->prec) + 1;
+		if ((str2[i - 1] == '.') || ((str2[i - 1] == '*') && (str2[i - 2] == '.')) ||
+		 ((str2[i - 1] == '0') && (str2[i - 2] == '.')) ||
+		  (data->prec > 0 && (str2[i - data->lenD] == '.')))
+				data->point_d = 1;
+
+		// if (data->with >= data->lenS)
+		// 	data->with = data->with - data->lenS;
+		// else
+		// 	data->with = 0;
+
+		if (data->prec < 0)
+			{
+		    	data->prec = 0;
+				data->prec_moin = 1;
+			}
+		if (data->with < 0)
+			{
+			  data->with = (data->with * (-1));
+			  data->moin = 1;
+			}	
+		// data->lenD = ft_strlen(hex);
+		int g = 0;
+		if (data->u == 0 && data->prec == 0 && data->with > 0)
+			g = 1;
+		else if (data->u == 0 && data->prec == 1 && data->with == 0)
+			g = 2;
+		
+		if (data->u == 0)
+			data->lenD = 1;
+		if (data->prec > data->with)
+			data->with = 0;
+		if (data->with < data->lenD)
+			data->with = 0;
+		else if (data->with >= data->lenD)
+			data->with = data->with - data->lenD;
+
+		if (data->with >= data->prec && data->prec < data->lenD)
+			data->prec = 0;
+			
+		if (data->prec > data->with && data->prec < data->lenD)
+			data->prec = 0;
+
+		if (data->prec >= data->lenD)
+			data->prec = data->prec - data->lenD;
+		
+		if (data->with >= data->prec)
+			data->with = data->with - data->prec;
+			
+		
+		if (data->point_d == 0 || ( data->point_d == 1 && data->with0 > data->prec0))
+		{
+				if (data->moin)
+				{
+					ft_putstr(hex);
+					while (data->with)
+						{
+							ft_putchar(' ');
+							data->with--;
+						}
+				}
+				else
+				{
+					while (data->with)
+						{
+							ft_putchar(' ');
+							data->with--;
+						}
+					ft_putstr(hex);
+				}
+		}
+		else
+		{
+			data->prec = data->prec - 1;
+			ft_putstr(hex);
+			while (data->prec)
+			{
+				ft_putchar('0');
+				data->prec--;
+			}
+		}
+		
+		
+		
+
+
+		
+}
+//////////////////////////////////////////////////////
+
+
 	free(data);
 	return i;
 }

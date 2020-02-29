@@ -6,7 +6,7 @@
 /*   By: rel-bour <rel-bour@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/01/27 16:27:22 by rel-bour          #+#    #+#             */
-/*   Updated: 2020/02/28 20:45:23 by rel-bour         ###   ########.fr       */
+/*   Updated: 2020/02/29 17:53:02 by rel-bour         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,10 @@
 // #include "libft/libft.h"
 #include <string.h>
 
-#define f "ultimate3 %*.*d %*.*s\n", 1, 50, 5000, 1, 0, "hey"
+#define f "%%%%%%%%%%"
+
+
+//"%0.10p", (void*)0
 
 int main()
 {
