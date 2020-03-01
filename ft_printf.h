@@ -6,7 +6,7 @@
 /*   By: rel-bour <rel-bour@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/01/09 10:32:09 by rel-bour          #+#    #+#             */
-/*   Updated: 2020/02/29 17:36:33 by rel-bour         ###   ########.fr       */
+/*   Updated: 2020/03/01 10:01:38 by rel-bour         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,7 +43,8 @@ void puts_p();
 // void printSS();
 void printSS();
 void print_s();
-int print_pors(int h);
+void print_pors(int h);
+void print_pors2(int h);
 void puts_pors();
 
 
