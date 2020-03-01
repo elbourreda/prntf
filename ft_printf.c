@@ -6,7 +6,7 @@
 /*   By: rel-bour <rel-bour@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/01/26 00:14:45 by rel-bour          #+#    #+#             */
-/*   Updated: 2020/03/01 11:46:23 by rel-bour         ###   ########.fr       */
+/*   Updated: 2020/03/01 13:12:09 by rel-bour         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -94,8 +94,9 @@ int get_data(char *str2, int i, va_list st)
 	//&& str2[r] != '%' %
 	while (ft_isspec(str2[i]) == 0 && str2[i] != '%')
 	{
+
 		// i++;
-		if (str2[i] == '-')
+		while (str2[i] == '-')
 		{
 			data->moin = 1;
 			i++;
@@ -215,9 +216,9 @@ int get_data(char *str2, int i, va_list st)
 			print_pors(h);
 			}
 		case_pers(h);
-		// if (h % 2 == 0)
-		// 	i = ;
-		// else
+		if (h % 2 != 0)
+			i = i - 2;
+		else
 			i = i - 1;
 		// print_pors(h);
 		// i = r - 1;
@@ -1527,6 +1528,7 @@ int ft_printf(char *str, ...)
 			i++;
 			i = get_data(str, i, s);
 				i++;
+			
 		}
 		else
 		{
