@@ -6,12 +6,17 @@
 /*   By: rel-bour <rel-bour@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/02/19 12:25:28 by rel-bour          #+#    #+#             */
-/*   Updated: 2020/02/29 09:55:23 by rel-bour         ###   ########.fr       */
+/*   Updated: 2020/03/01 14:20:11 by rel-bour         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include <stdio.h>
 #include <stdlib.h>
+
+// void freee(char *s)
+// {
+//     free(s);
+// }
 
 char *conv_hex(unsigned int nb)
 {
@@ -20,7 +25,7 @@ char *conv_hex(unsigned int nb)
     char rslt[20];
     int h = 0;
     char *rs;
-    // char *reda;
+    char *reda;
     
     i = 0;
     while (nb > 0)
@@ -42,9 +47,10 @@ char *conv_hex(unsigned int nb)
      h++;
     }
     rs[h] = '\0';
-    // reda = rs;
-    // free(rs);
-    return rs;    
+    reda = rs;
+    rs = NULL;
+    free(rs);
+    return reda;    
 }
 
 char *conv_hexg(unsigned int nb)
@@ -54,7 +60,7 @@ char *conv_hexg(unsigned int nb)
     char rslt[20];
     int h = 0;
     char *rs;
-    // char *reda;
+    char *reda;
     
     i = 0;
     while (nb > 0)
@@ -76,9 +82,10 @@ char *conv_hexg(unsigned int nb)
      h++;
     }
     rs[h] = '\0';
-    // reda = rs;
-    // free(rs);
-    return rs;    
+     reda = rs;
+    rs = NULL;
+    free(rs);
+    return reda;   
 }
 
 
@@ -89,7 +96,7 @@ char *conv_hexp(unsigned long int nb)
     char rslt[20];
     int h = 0;
     char *rs;
-    // char *reda;
+    char *reda;
     
     i = 0;
     if (nb != 0)
@@ -123,7 +130,8 @@ char *conv_hexp(unsigned long int nb)
      h++;
     }
     rs[h] = '\0';
-    // reda = rs;
-    // free(rs);
-    return rs;    
+    reda = rs;
+    rs = NULL;
+    free(rs);
+    return reda;
 }

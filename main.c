@@ -3,70 +3,36 @@
 /*                                                        :::      ::::::::   */
 /*   main.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: yfarini <yfarini@student.1337.ma>          +#+  +:+       +#+        */
+/*   By: rel-bour <rel-bour@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2019/11/01 16:59:15 by yfarini           #+#    #+#             */
-/*   Updated: 2019/11/02 23:48:12 by yfarini          ###   ########.fr       */
+/*   Created: 2020/01/27 16:27:22 by rel-bour          #+#    #+#             */
+/*   Updated: 2020/03/01 14:19:05 by rel-bour         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include  <stdio.h>
-#include  <stdlib.h>
-#include  <fcntl.h>
-#include  <string.h>
-#include "get_next_line.h"
-#define   RED 		"\033[0;31m"
-#define   GREEN 	"\033[0;32m"
-#define   YELLOW 	"\033[0;33m"
-#define   RST		"\033[0m"
+#include "ft_printf.h"
+// #include "libft/libft.h"
+#include <string.h>
 
+#define f "%p" , (void *)10021
 
+//"TEST TEST 0000%% %*.*s%%%-15.8dTEST%-15.8u0000000\t%%%15%%.3% %---15d %00015x", 7,5, "ABC",15,0,20,0x99
+
+//"%0.10p", (void*)0
 
 int main()
 {
-	int		fp0 = open("TESTS",O_RDONLY);
-	int		fp1 = open("OUT",O_RDONLY);
-	int		fp2 = open("EXPECTED",O_RDONLY);
-	FILE	*deepthought = fopen("deepthought","a+");
-	int		k = 0;
-	int		is_f = 0;
-	char	*line0 = NULL;
-	char	*line1 = NULL;
-	char	*line2 = NULL;
-	
-	setbuf(stdout,NULL);
-	if (!fp0 || !fp1 || !fp2)
-	{
-		printf("FAILED TO OPEN A ONE OF THE FILES!\n");
-		return (0377);
-	}
-	while (get_next_line(fp0, &line0) > 0)
-	{
-		if (line0[0] == '-')
-		{
-			if (is_f)
-				fprintf(deepthought, "------------------------------------------------------------------------------------------------\n\n\n");
-			if(k)
-				printf("\n");
-			printf("\n%s%s%s\n",YELLOW,strchr(line0, '"'),RST);
-			is_f = 0;
-		}
-		get_next_line(fp1, &line1);
-		get_next_line(fp2 ,&line2);
+    
+    // int r1 = 0;
+    // ft_printf(f);
+    // printf("\n");
+    // r1 = printf(f);
+    // printf("\nr = %d\nrd = %d", r1, g_r);
+    
+    // printf("\n%d\n", ft_printf(f));
+    printf("\n%d\n", printf(f));
 
-		if (line0[0] != '-')
-		{
-			if (strcmp(line1, line2))
-			{
-				is_f = 1;
-				fprintf(deepthought,"TESTED : %s\nprintf :    |%s\nft_printf : |%s\n\n",line0,line2,line1);
-				printf("%sKO%s ",RED,RST);
-				
-			}
-			else 
-				printf("%sOK%s ",GREEN,RST);
-		}
-		k++;
-	}
-	return (0);
+        
+    // system("leaks a.out");
+    
 }

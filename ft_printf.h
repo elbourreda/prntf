@@ -3,88 +3,84 @@
 /*                                                        :::      ::::::::   */
 /*   ft_printf.h                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: fbouibao <fbouibao@student.42.fr>          +#+  +:+       +#+        */
+/*   By: rel-bour <rel-bour@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2019/12/01 15:33:42 by fbouibao          #+#    #+#             */
-/*   Updated: 2019/12/29 17:58:24 by fbouibao         ###   ########.fr       */
+/*   Created: 2020/01/09 10:32:09 by rel-bour          #+#    #+#             */
+/*   Updated: 2020/03/01 10:01:38 by rel-bour         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
+
 
 #ifndef FT_PRINTF_H
 # define FT_PRINTF_H
 
-# include <stdlib.h>
-# include <unistd.h>
-# include <stdarg.h>
+#include <assert.h>
+#include <stdarg.h>
+#include <stdio.h>
+#include <stdlib.h>
+#include <stdio.h>
+#include <unistd.h>
+#include <stdlib.h>
+#include <string.h>
+#include <stdarg.h>
+// #include "./libft/libft.h"
+int g_r;
+int     ft_printf( char *str, ...);
+void	ft_putchar_fd(char c, int fd);
+int    ft_isdigit(int c);
+int        lenR(long nb);
+void print_c(int moin, char c, int nb_with);
+// void printSS(char *s, int prec, int zero, int with, int pre_zero);
+// void printSS(struct dt data);
+char *conv_hex(unsigned int nb);
+char *conv_hexg(unsigned int nb);
+char *conv_hexp(unsigned long nb);
+void puts_d();
+void puts_u();
+void puts_x();
+void puts_xg();
+void puts_p();
+// void printSS();
+void printSS();
+void print_s();
+void print_pors(int h);
+void print_pors2(int h);
+void puts_pors();
 
-typedef	struct		s_list
+
+/////libft
+void ft_putchar(char c);
+char	*ft_strjoin(char const *s1, char const *s2);
+char	*ft_strdup2(char *string);
+int	ft_strlen(const char *str);
+void        ft_putstr(char *s);
+int    ft_isspec(int c);
+void	ft_putnbr(long n);
+
+
+typedef struct 
 {
-	char			*str;
-	char			spfx;
-	char			*flg;
-	char			valn;
-	struct s_list	*next;
-}					t_list;
-
-typedef	struct		s_lst
-{
-	char			*flgs;
-	char			flg;
-	int				width;
-	char			*val;
-	int				prec;
-	char			*str_c;
-	int				val_i;
-	unsigned	int	u_val;
-	size_t			st_val;
-}					t_vrs;
-
-int					ft_printf(char *str, ...);
-size_t				ft_strlen(const char *str);
-void				ft_putchar(char c);
-void				ft_putstr(char *s);
-size_t				ft_strlcat(char *dst, const char *src, size_t size);
-int					ft_tolower(int c);
-int					ft_toupper(int c);
-int					ft_atoi(const char *str);
-char				*ft_strdup(const char *s1);
-char				*ft_substr(char const *s, unsigned int start, size_t len);
-char				*ft_itoa(long n);
-char				*ft_itoa_16(size_t n);
-t_list				*ft_lstlast(t_list *lst);
-void				ft_lstadd_back(t_list **alst, t_list *new);
-t_list				*l_lstnew(char *str, char *spfx, char *flg);
-int					get_spf(int pos, char *str);
-void				get_node(char *str, t_list **node);
-char				*ft_strdup(const char *s1);
-char				*ft_itoa_int16(unsigned int n, int i, int j);
-int					ft_isdigit(int c);
-int					str_spf_d(va_list ap, t_list *tmp);
-int					str_spf_u(va_list ap, t_list *tmp);
-int					str_spf_x(va_list ap, t_list *tmp);
-int					str_spf_p(va_list ap, t_list *tmp);
-char				*neg_nbr(char *str);
-int					cut_prec(va_list ap, t_vrs *vrbs, int *i);
-int					cut_width(va_list ap, t_vrs *vrbs, int *i);
-char				cut_flg(char *flgs, int *i);
-char				*get_s_p_u(char *val, int prec);
-void				*ft_memset(void *str, int c, size_t n);
-t_vrs				*l_lstnew_vrbs();
-int					ft_width(t_list *tmp, t_vrs *vrbs);
-int					ft_width_cnt(t_list *tmp, t_vrs *vrbs);
-char				*get_s_p(char *val, int prec);
-int					str_spf_s(va_list ap, t_list *tmp);
-int					str_spf_c(va_list ap, t_list *tmp);
-int					ft_width_str(t_list *tmp, t_vrs *vrbs);
-void				ft_width_cnt_str(t_list *tmp, t_vrs *vrbs);
-int					str_spf_pct(va_list ap, t_list *tmp);
-char				*get_s_p_s(char *val, int prec);
-void				free_vrbs(t_vrs *vrbs);
-void				free_obb(t_list *ob);
-int					rmpl_node(va_list ap, t_list *node);
-int					fct_aff(t_list *node);
-int					ft_prec_d(t_vrs *vrbs, t_list *tmp);
-int					ft_prec_u(t_vrs *vrbs, t_list *tmp, int i);
-int					ft_prec_x(t_vrs *vrbs, t_list *tmp);
+           
+           int with;
+           int with0;
+           int prec;
+           int prec0;
+           int lenS;
+           int moin;
+           int s_zero;
+           int pre_zero;
+           int prec_moin;
+           int d;
+           int d_salib;
+           int point_d;
+           int w_zero;
+           int max;
+           int lenD;
+           unsigned int u;
+           unsigned long int p;
+           char c;
+           char *s;
+}t_str;
+// str data;
 
 #endif
