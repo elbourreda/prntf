@@ -6,7 +6,7 @@
 /*   By: rel-bour <rel-bour@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/01/27 16:27:22 by rel-bour          #+#    #+#             */
-/*   Updated: 2020/03/02 15:30:55 by rel-bour         ###   ########.fr       */
+/*   Updated: 2020/03/02 19:54:46 by rel-bour         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,8 @@
 // #include "libft/libft.h"
 // #include <string.h>
 #include <stdio.h>
-#define f "%X", 1004
+int x;
+#define f "TEST TEST 0000%%%*.*s%%%-15.8dTEST%-15.8u0000000\t%%%15%%.3% reda elbour dfghf %%%%%%%%%%%%%% %s", 7,5, "ABC",15,0 , NULL
 
 //"TEST TEST 0000%% %*.*s%%%-15.8dTEST%-15.8u0000000\t%%%15%%.3% %---15d %00015x", 7,5, "ABC",15,0,20,0x99
 
