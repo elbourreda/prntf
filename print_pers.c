@@ -1,18 +1,18 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   print_u.c                                          :+:      :+:    :+:   */
+/*   print_pers.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: rel-bour <rel-bour@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2020/03/01 14:48:55 by rel-bour          #+#    #+#             */
-/*   Updated: 2020/03/02 10:02:27 by rel-bour         ###   ########.fr       */
+/*   Created: 2020/03/02 10:15:47 by rel-bour          #+#    #+#             */
+/*   Updated: 2020/03/02 11:30:03 by rel-bour         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_printf.h"
 
-void	while_putu(t_str *data, int int_prec)
+void	if_print_pnorm(t_str *data, int int_prec, int h)
 {
 	while (data->prec)
 	{
@@ -24,7 +24,7 @@ void	while_putu(t_str *data, int int_prec)
 			&& int_prec == 0)
 		ft_putchar(' ');
 	else
-		ft_putnbr(data->u);
+		print_pors(h);
 	while (data->with)
 	{
 		ft_putchar(' ');
@@ -32,7 +32,7 @@ void	while_putu(t_str *data, int int_prec)
 	}
 }
 
-void	while_put_norm(t_str *data, int int_prec)
+void	else_print_pnorm(t_str *data, int int_prec, int h)
 {
 	while (data->with)
 	{
@@ -49,26 +49,25 @@ void	while_put_norm(t_str *data, int int_prec)
 			&& int_prec == 0)
 		ft_putchar(' ');
 	else
-		ft_putnbr(data->u);
+		print_pors(h);
 }
 
-void	puts_u(t_str *data)
+void	puts_pors(t_str *data, int h)
 {
-	int int_with;
 	int int_prec;
 
-	int_with = 0;
 	int_prec = 0;
 	if (data->w_zero)
 	{
-		if (!data->point_d || (data->point_d && data->prec_moin && !data->moin))
+		if (!data->point_d || (data->point_d && data->prec_moin
+					&& !data->moin))
 		{
 			data->prec = data->with;
 			data->with = 0;
 		}
 	}
 	if (data->moin == 1)
-		while_putu(data, int_prec);
+		if_print_pnorm(data, int_prec, h);
 	else
-		while_put_norm(data, int_prec);
+		else_print_pnorm(data, int_prec, h);
 }

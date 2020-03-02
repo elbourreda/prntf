@@ -6,7 +6,7 @@
 /*   By: rel-bour <rel-bour@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/01/09 10:32:09 by rel-bour          #+#    #+#             */
-/*   Updated: 2020/03/01 18:24:46 by rel-bour         ###   ########.fr       */
+/*   Updated: 2020/03/02 12:40:55 by rel-bour         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,9 +25,9 @@ void					ft_putchar_fd(char c, int fd);
 int						ft_isdigit(int c);
 int						lenr(long nb);
 void					print_c();
-char					*conv_hex(unsigned int nb);
-char					*conv_hexg(unsigned int nb);
-char					*conv_hexp(unsigned long nb);
+char					*conv_hex(unsigned int nb, int i);
+char					*conv_hexg(unsigned int nb, int i);
+char					*conv_hexp(unsigned long nb, int i);
 void					puts_d();
 void					puts_u();
 void					puts_x();
@@ -54,8 +54,9 @@ void					ft_putstr(char *s);
 int						ft_isspec(int c);
 void					ft_putnbr(long n);
 int						ft_atoi(const char *str);
+void					freee(char *reda, char *rs);
 
-typedef struct
+typedef struct			s_str
 {
 	int					with;
 	int					with0;

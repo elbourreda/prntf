@@ -1,18 +1,18 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   print_u.c                                          :+:      :+:    :+:   */
+/*   print_p_plus.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: rel-bour <rel-bour@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2020/03/01 14:48:55 by rel-bour          #+#    #+#             */
-/*   Updated: 2020/03/02 10:02:27 by rel-bour         ###   ########.fr       */
+/*   Created: 2020/03/02 10:14:20 by rel-bour          #+#    #+#             */
+/*   Updated: 2020/03/02 12:49:53 by rel-bour         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_printf.h"
 
-void	while_putu(t_str *data, int int_prec)
+void	norm_p_if(t_str *data, int int_prec, char *hex)
 {
 	while (data->prec)
 	{
@@ -20,11 +20,14 @@ void	while_putu(t_str *data, int int_prec)
 		data->prec--;
 		int_prec = 1;
 	}
-	if (data->u == 0 && data->point_d == 1 && data->prec_moin == 0
+	if (data->p == 0 && data->point_d == 1 && data->prec_moin == 0
 			&& int_prec == 0)
+	{
+		ft_putstr("0x");
 		ft_putchar(' ');
+	}
 	else
-		ft_putnbr(data->u);
+		ft_putstr(hex);
 	while (data->with)
 	{
 		ft_putchar(' ');
@@ -32,7 +35,7 @@ void	while_putu(t_str *data, int int_prec)
 	}
 }
 
-void	while_put_norm(t_str *data, int int_prec)
+void	norm_p_else(t_str *data, int int_prec, char *hex)
 {
 	while (data->with)
 	{
@@ -45,30 +48,36 @@ void	while_put_norm(t_str *data, int int_prec)
 		data->prec--;
 		int_prec = 1;
 	}
-	if (data->u == 0 && data->point_d == 1 && data->prec_moin == 0
+	if (data->p == 0 && data->point_d == 1 && data->prec_moin == 0
 			&& int_prec == 0)
+	{
 		ft_putchar(' ');
+		ft_putstr("0x");
+	}
 	else
-		ft_putnbr(data->u);
+		ft_putstr(hex);
 }
 
-void	puts_u(t_str *data)
+void	puts_p(t_str *data)
 {
-	int int_with;
-	int int_prec;
+	int		int_prec;
+	char	*hex;
+	int		i;
 
-	int_with = 0;
+	i = 0;
+	hex = conv_hexp(data->p, i);
 	int_prec = 0;
 	if (data->w_zero)
 	{
-		if (!data->point_d || (data->point_d && data->prec_moin && !data->moin))
+		if (!data->point_d || (data->point_d && data->prec_moin
+					&& !data->moin))
 		{
 			data->prec = data->with;
 			data->with = 0;
 		}
 	}
 	if (data->moin == 1)
-		while_putu(data, int_prec);
+		norm_p_if(data, int_prec, hex);
 	else
-		while_put_norm(data, int_prec);
+		norm_p_else(data, int_prec, hex);
 }

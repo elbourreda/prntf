@@ -6,7 +6,7 @@
 /*   By: rel-bour <rel-bour@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/02/19 12:24:15 by rel-bour          #+#    #+#             */
-/*   Updated: 2020/03/02 08:58:09 by rel-bour         ###   ########.fr       */
+/*   Updated: 2020/03/02 12:48:24 by rel-bour         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -73,10 +73,12 @@ void	print_x(t_str *data, char *str2, int i, va_list st)
 {
 	int		g;
 	char	*hex;
+	int		u;
 
+	u = 0;
 	g = 0;
 	data->u = va_arg(st, unsigned long);
-	hex = conv_hex(data->u);
+	hex = conv_hex(data->u, u);
 	prec_with_if(data);
 	data->lend = ft_strlen(hex);
 	g = if_print_p(data, g);

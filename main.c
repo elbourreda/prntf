@@ -6,15 +6,15 @@
 /*   By: rel-bour <rel-bour@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/01/27 16:27:22 by rel-bour          #+#    #+#             */
-/*   Updated: 2020/03/01 18:04:17 by rel-bour         ###   ########.fr       */
+/*   Updated: 2020/03/02 15:30:55 by rel-bour         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_printf.h"
 // #include "libft/libft.h"
 // #include <string.h>
-
-#define f "%%%%"
+#include <stdio.h>
+#define f "%X", 1004
 
 //"TEST TEST 0000%% %*.*s%%%-15.8dTEST%-15.8u0000000\t%%%15%%.3% %---15d %00015x", 7,5, "ABC",15,0,20,0x99
 

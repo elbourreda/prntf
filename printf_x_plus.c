@@ -1,18 +1,18 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   print_u.c                                          :+:      :+:    :+:   */
+/*   printf_x_plus.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: rel-bour <rel-bour@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2020/03/01 14:48:55 by rel-bour          #+#    #+#             */
-/*   Updated: 2020/03/02 10:02:27 by rel-bour         ###   ########.fr       */
+/*   Created: 2020/03/02 10:10:36 by rel-bour          #+#    #+#             */
+/*   Updated: 2020/03/02 12:47:36 by rel-bour         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_printf.h"
 
-void	while_putu(t_str *data, int int_prec)
+void	if_print_xnorm(t_str *data, int int_prec, char *hex)
 {
 	while (data->prec)
 	{
@@ -24,7 +24,12 @@ void	while_putu(t_str *data, int int_prec)
 			&& int_prec == 0)
 		ft_putchar(' ');
 	else
-		ft_putnbr(data->u);
+	{
+		if (data->u <= 9)
+			ft_putnbr(data->u);
+		else
+			ft_putstr(hex);
+	}
 	while (data->with)
 	{
 		ft_putchar(' ');
@@ -32,7 +37,7 @@ void	while_putu(t_str *data, int int_prec)
 	}
 }
 
-void	while_put_norm(t_str *data, int int_prec)
+void	else_print_xnorm(t_str *data, int int_prec, char *hex)
 {
 	while (data->with)
 	{
@@ -49,26 +54,34 @@ void	while_put_norm(t_str *data, int int_prec)
 			&& int_prec == 0)
 		ft_putchar(' ');
 	else
-		ft_putnbr(data->u);
+	{
+		if (data->u <= 9)
+			ft_putnbr(data->u);
+		else
+			ft_putstr(hex);
+	}
 }
 
-void	puts_u(t_str *data)
+void	puts_x(t_str *data)
 {
-	int int_with;
-	int int_prec;
+	int		int_prec;
+	char	*hex;
+	int		i;
 
-	int_with = 0;
+	i = 0;
+	hex = conv_hex(data->u, i);
 	int_prec = 0;
 	if (data->w_zero)
 	{
-		if (!data->point_d || (data->point_d && data->prec_moin && !data->moin))
+		if (!data->point_d || (data->point_d && data->prec_moin
+					&& !data->moin))
 		{
 			data->prec = data->with;
 			data->with = 0;
 		}
 	}
 	if (data->moin == 1)
-		while_putu(data, int_prec);
+		if_print_xnorm(data, int_prec, hex);
 	else
-		while_put_norm(data, int_prec);
+		else_print_xnorm(data, int_prec, hex);
 }

@@ -6,11 +6,18 @@
 /*   By: rel-bour <rel-bour@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/03/01 18:11:54 by rel-bour          #+#    #+#             */
-/*   Updated: 2020/03/01 18:56:55 by rel-bour         ###   ########.fr       */
+/*   Updated: 2020/03/02 14:48:54 by rel-bour         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_printf.h"
+
+void	freee(char *reda, char *rs)
+{
+	reda = rs;
+	rs = NULL;
+	free(rs);
+}
 
 int		ft_isspec(int c)
 {
