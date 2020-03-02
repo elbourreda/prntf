@@ -6,132 +6,98 @@
 /*   By: rel-bour <rel-bour@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/02/19 12:25:28 by rel-bour          #+#    #+#             */
-/*   Updated: 2020/03/01 14:20:11 by rel-bour         ###   ########.fr       */
+/*   Updated: 2020/03/02 09:12:40 by rel-bour         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include <stdio.h>
 #include <stdlib.h>
+#include "ft_printf.h"
 
-// void freee(char *s)
-// {
-//     free(s);
-// }
-
-char *conv_hex(unsigned int nb)
+void	print_gr_x(t_str *data, int g)
 {
-    int i;
-    int r;
-    char rslt[20];
-    int h = 0;
-    char *rs;
-    char *reda;
-    
-    i = 0;
-    while (nb > 0)
-    {
-        r = nb % 16;
-        if ( r < 10)
-            rslt[i] = r + 48;
-        else
-            rslt[i] = r + 87;
-            
-        nb = nb / 16;
-        i++;
-    }
-    rs = (char*)malloc(i * sizeof(char) + 1);
-    while (i > 0)
-    {
-        rs[h] = rslt[i - 1]; 
-     i--;
-     h++;
-    }
-    rs[h] = '\0';
-    reda = rs;
-    rs = NULL;
-    free(rs);
-    return reda;    
+	if (!data->s_zero)
+	{
+		puts_xg(data);
+	}
+	else if (data->u == 0 && data->prec == 0 && data->with > 0)
+	{
+		while (data->with > 0)
+		{
+			ft_putchar(' ');
+			data->with--;
+		}
+	}
+	else if (g == 1)
+	{
+		ft_putchar(' ');
+	}
+	else if (g == 2)
+	{
+		ft_putchar('0');
+	}
 }
 
-char *conv_hexg(unsigned int nb)
+int		if_printgxx(t_str *data, int g)
 {
-    int i;
-    int r;
-    char rslt[20];
-    int h = 0;
-    char *rs;
-    char *reda;
-    
-    i = 0;
-    while (nb > 0)
-    {
-        r = nb % 16;
-        if ( r < 10)
-            rslt[i] = r + 48;
-        else
-            rslt[i] = r + 55;
-            
-        nb = nb / 16;
-        i++;
-    }
-    rs = (char*)malloc(i * sizeof(char) + 1);
-    while (i > 0)
-    {
-        rs[h] = rslt[i - 1]; 
-     i--;
-     h++;
-    }
-    rs[h] = '\0';
-     reda = rs;
-    rs = NULL;
-    free(rs);
-    return reda;   
+	if (data->u == 0 && data->prec == 0 && data->with > 0)
+		g = 1;
+	else if (data->u == 0 && data->prec == 1 && data->with == 0)
+		g = 2;
+	if (data->u == 0)
+		data->lend = 1;
+	if (data->prec > data->with)
+		data->with = 0;
+	if (data->with < data->lend)
+		data->with = 0;
+	else if (data->with >= data->lend)
+		data->with = data->with - data->lend;
+	if (data->with >= data->prec && data->prec < data->lend)
+		data->prec = 0;
+	if (data->prec > data->with && data->prec < data->lend)
+		data->prec = 0;
+	if (data->prec >= data->lend)
+		data->prec = data->prec - data->lend;
+	if (data->with >= data->prec)
+		data->with = data->with - data->prec;
+	return (g);
 }
 
-
-char *conv_hexp(unsigned long int nb)
+void	prec_with_iffpxg(t_str *data)
 {
-    int i;
-    int r;
-    char rslt[20];
-    int h = 0;
-    char *rs;
-    char *reda;
-    
-    i = 0;
-    if (nb != 0)
-    {
-    while (nb > 0)
-    {
-        r = nb % 16;
-        if ( r < 10)
-            rslt[i] = r + 48;
-        else
-            rslt[i] = r + 87;
-            
-        nb = nb / 16;
-        i++;
-    }
-    }
-    else
-    {
-        i = 1;
-        rslt[0] = '0';
-    }
-    
-    rs = (char*)malloc(i * sizeof(char) + 3);
-    rs[0] = '0';
-    rs[1] = 'x';
-    h = 2;
-    while (i > 0)
-    {
-        rs[h] = rslt[i - 1]; 
-     i--;
-     h++;
-    }
-    rs[h] = '\0';
-    reda = rs;
-    rs = NULL;
-    free(rs);
-    return reda;
+	if (data->prec < 0)
+	{
+		data->prec = 0;
+		data->prec_moin = 1;
+	}
+	if (data->with < 0)
+	{
+		data->with = (data->with * (-1));
+		data->moin = 1;
+	}
+}
+
+void	print_xg(t_str *data, char *str2, int i, va_list st)
+{
+	char	*hex;
+	int		g;
+
+	g = 0;
+	data->u = va_arg(st, unsigned long);
+	hex = conv_hexg(data->u);
+	prec_with_iffpxg(data);
+	data->lend = ft_strlen(hex);
+	g = if_printgxx(data, g);
+	if (((str2[i - 1] == '.') && (data->prec == 0) && !data->prec_moin
+	&& data->u == 0 && data->with == 0) || ((str2[i - 1] == '0')
+	&& (str2[i - 2] == '.') && (data->prec == 0) &&
+	!data->prec_moin && data->u == 0 && data->with == 0) ||
+	((str2[i - 1] == '*') && (str2[i - 2] == '.') && (data->prec == 0)
+	&& !data->prec_moin && data->u == 0 && data->with == 0))
+		data->s_zero = 1;
+	if ((str2[i - 1] == '.') || ((str2[i - 1] == '*') && (str2[i - 2] == '.'))
+	|| ((str2[i - 1] == '0') && (str2[i - 2] == '.')) ||
+	((ft_isdigit(str2[i - 1]) == 1) && (str2[i - 2] == '.')))
+		data->point_d = 1;
+	print_gr_x(data, g);
 }

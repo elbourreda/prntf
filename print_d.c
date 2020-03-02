@@ -6,7 +6,7 @@
 /*   By: rel-bour <rel-bour@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/02/28 10:11:12 by rel-bour          #+#    #+#             */
-/*   Updated: 2020/02/29 17:37:22 by rel-bour         ###   ########.fr       */
+/*   Updated: 2020/03/01 18:21:11 by rel-bour         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -72,64 +72,112 @@ void puts_d(t_str *data)
     
 }
 
-
-void puts_u(t_str *data)
+void print_d(t_str *data, char *str2, int i, va_list st)
 {
-	int int_with = 0;
-	int int_prec = 0;
-
-	if (data->w_zero)
-	{
-		if (!data->point_d || (data->point_d && data->prec_moin && !data->moin))
+	data->d = va_arg(st, int);
+	if (data->prec < 0)
+			{
+		    	data->prec = 0;
+				data->prec_moin = 1;
+			}
+			if (data->with < 0)
+			{
+			  data->with = (data->with * (-1));
+			  data->moin = 1;
+			}
+		
+		
+		if (data->d < 0 && data-> d != (-2147483648))
 		{
-		data->prec = data->with;
-		data->with = 0;
+			data->d = data->d * -1;
+			data->with -= 1;
+			data->d_salib = 1;
 		}
-
-	}
-
-    if (data->moin == 1)
+		if (data->d == (-2147483647 - 1))
+		{
+				data->u = 2147483648;
+				data->max = 1;
+				data->with -= 1;
+				data->d_salib = 1;
+		}
+		data->lend = lenr(data->d);
+		int g = 0;
+		if (data->d == 0 && data->prec == 0 && data->with > 0)
+			g = 1;
+		else if (data->d == 0 && data->prec == 1 && data->with == 0)
+			g = 2;
+		if (data->d == 0)
+			data->lend = 1;
+		if (data->prec > data->with)
+			data->with = 0;
+		if (data->with < data->lend)
+			data->with = 0;
+		else if (data->with >= data->lend)
+			data->with = data->with - data->lend;
+		if (data->with > data->prec && data->prec < data->lend)
+			data->prec = 0;
+		if (data->prec > data->with && data->prec < data->lend)
+			data->prec = 0;
+		if (data->prec >= data->lend)
+			data->prec = data->prec - data->lend;		
+		if (data->with >= data->prec)
+			data->with = data->with - data->prec;
+		if (((str2[i - 1] == '.') && (data->prec == 0) && !data->prec_moin && data->d == 0 && data->with == 0) 
+			||((str2[i - 1] == '0') && (str2[i - 2] == '.') && (data->prec == 0) && !data->prec_moin && data->d == 0 && data->with == 0)
+				|| ((str2[i - 1] == '*') && (str2[i - 2] == '.') && (data->prec == 0) && !data->prec_moin && data->d == 0 && data->with == 0 ) )
+			data->s_zero = 1;
+		if ((str2[i - 1] == '.') || ((str2[i - 1] == '*') && (str2[i - 2] == '.')) ||
+		 ((str2[i - 1] == '0') && (str2[i - 2] == '.')) ||
+		  ((ft_isdigit(str2[i - 1]) == 1) && (str2[i - 2] == '.')))
+				data->point_d = 1;
+			
+		if (!data->s_zero)
+		{
+			puts_d(data);
+		}
+		else if (data->d == 0 && data->prec == 0 && data->with > 0)
+		{
+			while (data->with > 0)
 			{
- 
-			while (data->prec)
-				{
-					ft_putchar('0');
-					data->prec--;
-					int_prec = 1;
-				}
-			if (data->u == 0 && data->point_d == 1 && data->prec_moin == 0 && int_prec == 0)
-                ft_putchar(' ');
-            else
-				ft_putnbr(data->u);
-			while (data->with)
-				{
-					ft_putchar(' ');
-					data->with--;
-				}
-                
+				ft_putchar(' ');
+				data->with--;
 			}
-			else
-			{
-				while (data->with)
-				{
-					ft_putchar(' ');
-					data->with--;
-					int_with = 1;
-				}
-
-				while (data->prec)
-				{
-					ft_putchar('0');
-					data->prec--;
-					int_prec = 1;
-				}
-                if (data->u == 0 && data->point_d == 1 && data->prec_moin == 0 && int_prec == 0)
-                ft_putchar(' ');
-                else
-				ft_putnbr(data->u);
-			}
-    
+		}
+		else if (g==1)
+		{
+			ft_putchar(' ');
+		}
+		else if (g == 2)
+		{
+			ft_putchar('0');
+		}
+	
 }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 void puts_x(t_str *data)

@@ -6,13 +6,13 @@
 #    By: rel-bour <rel-bour@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2020/01/27 15:18:53 by rel-bour          #+#    #+#              #
-#    Updated: 2020/02/28 10:49:32 by rel-bour         ###   ########.fr        #
+#    Updated: 2020/03/01 20:24:24 by rel-bour         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
 NAME = libftprintf.a
 
-SRC = ft_printf.c print_utils.c print_gx.c print_C.c print_S.c print_d.c
+SRC = ft_printf.c conc_hex.c print_utils.c print_utils2.c print_gx.c print_c.c print_p.c print_u.c print_x.c get_data.c print_s.c print_d.c
 
 OBJS = *.o
 
