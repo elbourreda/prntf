@@ -6,7 +6,7 @@
 /*   By: rel-bour <rel-bour@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/01/09 10:32:09 by rel-bour          #+#    #+#             */
-/*   Updated: 2020/03/02 12:40:55 by rel-bour         ###   ########.fr       */
+/*   Updated: 2020/03/02 21:18:32 by rel-bour         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,6 +18,29 @@
 # include <stdlib.h>
 # include <unistd.h>
 # include <stdarg.h>
+
+typedef struct			s_str
+{
+	int					with;
+	int					with0;
+	int					prec;
+	int					prec0;
+	int					lens;
+	int					moin;
+	int					s_zero;
+	int					pre_zero;
+	int					prec_moin;
+	int					d;
+	int					d_salib;
+	int					point_d;
+	int					w_zero;
+	int					max;
+	int					lend;
+	unsigned int		u;
+	unsigned long int	p;
+	char				c;
+	char				*s;
+}						t_str;
 
 int						g_r;
 int						ft_printf(char *str, ...);
@@ -55,28 +78,5 @@ int						ft_isspec(int c);
 void					ft_putnbr(long n);
 int						ft_atoi(const char *str);
 void					freee(char *reda, char *rs);
-
-typedef struct			s_str
-{
-	int					with;
-	int					with0;
-	int					prec;
-	int					prec0;
-	int					lens;
-	int					moin;
-	int					s_zero;
-	int					pre_zero;
-	int					prec_moin;
-	int					d;
-	int					d_salib;
-	int					point_d;
-	int					w_zero;
-	int					max;
-	int					lend;
-	unsigned int		u;
-	unsigned long int	p;
-	char				c;
-	char				*s;
-}						t_str;
 
 #endif

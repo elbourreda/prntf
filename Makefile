@@ -6,7 +6,7 @@
 #    By: rel-bour <rel-bour@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2020/01/27 15:18:53 by rel-bour          #+#    #+#              #
-#    Updated: 2020/03/02 20:36:38 by rel-bour         ###   ########.fr        #
+#    Updated: 2020/03/02 21:12:18 by rel-bour         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -14,7 +14,7 @@ NAME = libftprintf.a
 
 SRC = print_d_plus.c ft_printf.c print_u_plus.c conc_hex.c print_utils.c print_utils2.c print_gx.c print_c.c print_p.c print_u.c print_x.c get_data.c print_s.c print_d.c print_pers.c print_p_plus.c print_u_plus.c printf_x_plus.c printf_gx_plus.c
 
-OBJS = *.o
+OBJS = $(SRC:.c=.o)
 
 FLAGS = -Wall -Wextra -Werror
 

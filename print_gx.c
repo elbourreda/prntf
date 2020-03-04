@@ -6,12 +6,10 @@
 /*   By: rel-bour <rel-bour@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/02/19 12:25:28 by rel-bour          #+#    #+#             */
-/*   Updated: 2020/03/02 12:46:02 by rel-bour         ###   ########.fr       */
+/*   Updated: 2020/03/02 21:18:57 by rel-bour         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include <stdio.h>
-#include <stdlib.h>
 #include "ft_printf.h"
 
 void	print_gr_x(t_str *data, int g)

@@ -6,7 +6,7 @@
 /*   By: rel-bour <rel-bour@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/02/28 10:11:12 by rel-bour          #+#    #+#             */
-/*   Updated: 2020/03/02 20:53:58 by rel-bour         ###   ########.fr       */
+/*   Updated: 2020/03/02 21:05:48 by rel-bour         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,7 +24,7 @@ void	ifif_print_d(t_str *data)
 		data->with = (data->with * (-1));
 		data->moin = 1;
 	}
-	if (data->d < 0 && (data->d != (-2147483648) - 1))
+	if (data->d < 0 && (data->d != (-2147483648)))
 	{
 		data->d = data->d * (-1);
 		data->with -= 1;
